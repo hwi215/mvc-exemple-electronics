@@ -68,6 +68,16 @@ public interface ElectronicsService {
      *
      */
     Electronics searchByModelName(String modelName) throws SearchNotFoundException;
+
+    /**
+     * 가격의 최소값과 최대값 사이에 존재하는 전자제품 검색
+     * @Param 최소값, 최대값
+     *  : 해당 비용 범위에 존재하는 전자제품이 않으면
+     *     SearchNotFoundException 예외발생
+     *
+     */
+    ArrayList<Electronics> searchByPriceRange(int min, int max) throws SearchNotFoundException;
+
 }
 
 

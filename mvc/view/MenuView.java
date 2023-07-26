@@ -1,5 +1,6 @@
 package mvc.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import mvc.controller.ElectronicsController;
@@ -130,8 +131,13 @@ public class MenuView{
 
 	/**
 	 * 모델 가격 범위에 해당하는 전자제품 검색
-색 */
+    */
 	private void inputSearchPrice() {
+		System.out.print("전자제품의 최소 비용은?");
+		int min = Integer.parseInt(sc.nextLine());
+		System.out.print("전자제품의 최대 비용은?");
+		int max = Integer.parseInt(sc.nextLine());
+		controller.searchByPriceRange(min, max);
 
 	}
 

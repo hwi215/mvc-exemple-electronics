@@ -6,6 +6,7 @@ import mvc.exception.SearchNotFoundException;
 import mvc.service.ElectronicsService;
 import mvc.service.ElectronicsServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static mvc.view.FailView.errorMessage;
@@ -43,9 +44,9 @@ public class ElectronicsController {
         try{
             service.insert(electronics);
         }catch (ElectronicsArrayBoundsException e){
-            System.out.println(e.getMessage());
+            errorMessage(e.getMessage());
         } catch (SearchNotFoundException e) {
-            System.out.println(e.getMessage());
+            errorMessage(e.getMessage());
         }
 
     }
@@ -76,7 +77,7 @@ public class ElectronicsController {
             service.update(electronics);
             System.out.println(electronics.toString());
         }catch (SearchNotFoundException e){
-            System.out.println(e.getMessage());
+            errorMessage(e.getMessage());
         }
 
     	
@@ -90,7 +91,7 @@ public class ElectronicsController {
         try{
             service.delete(modelNo);
         }catch (SearchNotFoundException e){
-            System.out.println(e.getMessage());
+            errorMessage("해당 모델이 없어 삭제할 수 없습니다.");
         }
 		
 	}
@@ -107,6 +108,19 @@ public class ElectronicsController {
         }catch (SearchNotFoundException e){
             errorMessage(e.getMessage());
             printMessage(modelName + " 이라는 모델이름 검색 실패");
+
+        }
+    }
+
+    public void searchByPriceRange(int min, int max){
+        try{
+            ArrayList<Electronics> electronicsArrayList = service.searchByPriceRange(min, max);
+            printAll(electronicsArrayList);
+            printMessage("비용 범위에 해당하는 전자제품 검색 성공");
+
+        }catch (SearchNotFoundException e){
+            errorMessage(e.getMessage());
+            printMessage("비용 범위에 해당하는 전자제품 검색 실패");
 
         }
     }

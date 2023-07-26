@@ -118,8 +118,7 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 		// 찾았으면 삭제하기
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).getModelNo() == modelNo){
-				list.remove(i); // 삭제
-				//System.out.println("삭제 완료");
+				list.remove(i); // 삭제B
 				printMessage("삭제 완료");
 				break;
 			}
@@ -136,5 +135,23 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 		}
 		throw new SearchNotFoundException(modelName + "해당 모델이름을 찾을 수 없습니다.");
 	}
+
+	/**
+	 * 가격의 최소값과 최대값 사이에 존재하는 전자제품 검색
+	 */
+	@Override
+	public ArrayList<Electronics> searchByPriceRange(int min, int max) throws SearchNotFoundException {
+		ArrayList<Electronics> searchList = new ArrayList<>();
+		for(Electronics electronics : list){
+			if(electronics.getModelPrice() >= min && electronics.getModelPrice() <= max){
+				searchList.add(electronics);
+			}
+		}
+		if(searchList.size() != 0) {
+			return searchList;
+		}
+		throw new SearchNotFoundException("해당 가격 범위의 전자제품을 찾을 수 없습니다.");
+	}
+
 
 } // 클래스 끝 
