@@ -55,12 +55,11 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
 
-		if(list.size() > MAX_SIZE){
+		if(list.size() == MAX_SIZE-1){ // 하나 더 추가하면 배열 초과
 			throw new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할수 없습니다.");
 		}
 
 		// 10개 이내면 등록
-		//new ElectronicsServiceImpl();
 
 		list.add(electronics);
 		System.out.println(list.toString());
