@@ -72,7 +72,8 @@ public class ElectronicsController {
      * 모델번호에 해당하는 전자제품 삭제하기 
      * @param electronics
      */
-	public void deleteModelNo(int modelNo) {
+	public void deleteModelNo(int modelNo) throws SearchNotFoundException {
+        service.delete(modelNo);
 		
 	}
     

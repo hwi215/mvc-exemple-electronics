@@ -103,6 +103,16 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public void delete(int modelNo) throws SearchNotFoundException {
 		// TODO Auto-generated method stub
+		Electronics targetModelNoElectronics = searchByModelNo(modelNo); // 모델번호에 해당하는 전자제품 찾기
+
+		// 찾았으면 삭제하기
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getModelNo() == modelNo){
+				list.remove(i); // 삭제
+				System.out.println("삭제 완료");
+				break;
+			}
+		}
 		
 	}
     

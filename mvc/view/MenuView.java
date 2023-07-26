@@ -103,7 +103,7 @@ public class MenuView{
 	/**
 	  모델번호에 해당하는 전자제품 삭제 위해서 모델번호 키보드입력 처리하는 메소드
 	*/
-  public void inputDelete(){
+  public void inputDelete() throws SearchNotFoundException {
      System.out.print("삭제 할 전자제품 모델번호는? ");
       int modelNo = Integer.parseInt(sc.nextLine());
 		controller.deleteModelNo(modelNo);
