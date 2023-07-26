@@ -20,9 +20,9 @@ public class MenuView{
 	public void printMenu(){
         
 	     while(true){
-           System.out.println("----------------------------------------------------------------------------------");
-           System.out.println("1. 전체검색    2. 모델번호검색     3.등록     4. 수정   5. 삭제    9. 종료");
-		   System.out.println("----------------------------------------------------------------------------------");
+           System.out.println("-------------------------------------------------------------------------------------------------");
+           System.out.println("1. 전체검색    2. 모델번호검색     3.등록     4. 수정   5. 삭제   6. 모델명 검색   7. 모델 가격 범위 검색  9. 종료");
+		   System.out.println("-------------------------------------------------------------------------------------------------");
 		   System.out.print("메뉴선택 > ");
 
 		   String  menu = sc.nextLine();
@@ -39,8 +39,14 @@ public class MenuView{
 			   case "4" : 
                  this.inputUpdate();
 			   break;
-			   case "5" : 
-	                 this.inputDelete();
+			   case "5" :
+				   this.inputDelete();
+				   break;
+			   case "6" :
+				   this.inputSearchName();
+				   break;
+			   case "7" :
+				   this.inputSearchPrice();
 				   break;
 			   case "9" : 
                  System.exit(0);
@@ -52,6 +58,8 @@ public class MenuView{
 		 }//while문끝
 
 	}//메소드끝
+
+
 
 	/**
 	   등록할때 키보드 입력을 처리하는 메소드
@@ -110,5 +118,23 @@ public class MenuView{
 
  
 	}
+
+	/**
+	 * 모델 이름에 해당하는 전자제품 검색
+	 */
+	private void inputSearchName() {
+		System.out.print("검색 할 전자제품 모델이름은? ");
+		String modelName = sc.nextLine();
+		controller.searchByModelName(modelName);
+	}
+
+	/**
+	 * 모델 가격 범위에 해당하는 전자제품 검색
+색 */
+	private void inputSearchPrice() {
+
+	}
+
+
 
 }

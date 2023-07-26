@@ -36,5 +36,10 @@ public class SuccessView {
          System.out.println(message+"\n");
     }
 
+    // 모델이름에 해당하는 전자제품 출력하기
+    public static void printSearchByModelName(Electronics electronics) {
+        System.out.println(electronics +"\n");
+    }
+
     
 }

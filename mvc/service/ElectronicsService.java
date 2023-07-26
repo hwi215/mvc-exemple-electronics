@@ -59,6 +59,15 @@ public interface ElectronicsService {
      */
     public void delete(int modelNo) throws SearchNotFoundException;
 
+
+    /**
+     * 모델 이름에 해당하는 전자제품 검색
+     * @Param 모델이름
+     *  : 전자제품에 해당 모델 이름이 존재하지 않으면
+     *     SearchNotFoundException 예외발생
+     *
+     */
+    Electronics searchByModelName(String modelName) throws SearchNotFoundException;
 }
 
 

@@ -126,5 +126,15 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 		}
 		
 	}
-    
+
+	@Override
+	public Electronics searchByModelName(String modelName) throws SearchNotFoundException {
+		for(Electronics electronics : list){
+			if(electronics.getModelName().equals(modelName)){
+				return electronics;
+			}
+		}
+		throw new SearchNotFoundException(modelName + "해당 모델이름을 찾을 수 없습니다.");
+	}
+
 } // 클래스 끝 

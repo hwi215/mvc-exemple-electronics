@@ -9,8 +9,7 @@ import mvc.service.ElectronicsServiceImpl;
 import java.util.List;
 
 import static mvc.view.FailView.errorMessage;
-import static mvc.view.SuccessView.printAll;
-import static mvc.view.SuccessView.printSearchByModelNo;
+import static mvc.view.SuccessView.*;
 
 
 /**
@@ -95,7 +94,22 @@ public class ElectronicsController {
         }
 		
 	}
-    
+
+    /**
+     * 모델 이름에 해당하는 전자제품 검색
+     */
+    public void searchByModelName(String modelName) {
+        try{
+            Electronics electronics = service.searchByModelName(modelName);
+            printSearchByModelName(electronics);
+            printMessage(modelName + " 이라는 모델이름 검색 성공");
+
+        }catch (SearchNotFoundException e){
+            errorMessage(e.getMessage());
+            printMessage(modelName + " 이라는 모델이름 검색 실패");
+
+        }
+    }
 }
 
 
