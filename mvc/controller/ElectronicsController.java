@@ -38,9 +38,13 @@ public class ElectronicsController {
      * 전자제품 등록 
      */
    
-    public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
+    public void insert(Electronics electronics){
 
-        service.insert(electronics);
+        try{
+            service.insert(electronics);
+        }catch (ElectronicsArrayBoundsException e){
+            e.getMessage();
+        }
        
     }
     
@@ -50,21 +54,29 @@ public class ElectronicsController {
      * 모델번호에 해당하는 전자제품 검색
      * @param modelNo
      */
-    public void searchByModelNo(int modelNo) throws SearchNotFoundException {
+    public void searchByModelNo(int modelNo){
 
-        Electronics electronics = service.searchByModelNo(modelNo);
+        try{
+            Electronics electronics = service.searchByModelNo(modelNo);
+            System.out.println(electronics.toString());
+        }catch (SearchNotFoundException e){
+            e.getMessage();
+        }
 
-        System.out.println(electronics.toString());
-    	
     } 
 
     /**
      * 모델번호에 해당하는 전자제품 수정하기 
      * @param electronics
      */
-    public void update(Electronics electronics) throws SearchNotFoundException {
-        service.update(electronics);
-        System.out.println(electronics.toString());
+    public void update(Electronics electronics){
+        try{
+            service.update(electronics);
+            System.out.println(electronics.toString());
+        }catch (SearchNotFoundException e){
+            e.getMessage();
+        }
+
     	
     }
     
@@ -72,8 +84,12 @@ public class ElectronicsController {
      * 모델번호에 해당하는 전자제품 삭제하기 
      * @param electronics
      */
-	public void deleteModelNo(int modelNo) throws SearchNotFoundException {
-        service.delete(modelNo);
+	public void deleteModelNo(int modelNo){
+        try{
+            service.delete(modelNo);
+        }catch (SearchNotFoundException e){
+            e.getMessage();
+        }
 		
 	}
     

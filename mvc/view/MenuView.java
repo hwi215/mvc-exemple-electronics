@@ -17,7 +17,7 @@ public class MenuView{
 	/**
 	  전체 메뉴를 출력하는 메소드
 	*/
-	public void printMenu() throws SearchNotFoundException, ElectronicsArrayBoundsException {
+	public void printMenu(){
         
 	     while(true){
            System.out.println("----------------------------------------------------------------------------------");
@@ -56,7 +56,7 @@ public class MenuView{
 	/**
 	   등록할때 키보드 입력을 처리하는 메소드
 	*/
-	public void inputInsert() throws ElectronicsArrayBoundsException {
+	public void inputInsert(){
         System.out.print("모델번호는? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 
@@ -77,7 +77,7 @@ public class MenuView{
 	/**
 	  모델번호에 해당하는 전자제품 검색하기 위해서 모델번호 키보드입력 처리하는 메소드
 	*/
-    public void inputSearch() throws SearchNotFoundException {
+    public void inputSearch(){
        System.out.print("찾을 전자제품 모델번호는? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 		controller.searchByModelNo(modelNo);
@@ -89,7 +89,7 @@ public class MenuView{
 	/**
 	  모델번호에 해당하는 설명을 수정하기 위해 키보드 입력처리하는 메소드
 	*/
-	public void inputUpdate() throws SearchNotFoundException {
+	public void inputUpdate(){
         System.out.print("수정하려는 전자제품 모델번호는?? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 
@@ -103,7 +103,7 @@ public class MenuView{
 	/**
 	  모델번호에 해당하는 전자제품 삭제 위해서 모델번호 키보드입력 처리하는 메소드
 	*/
-  public void inputDelete() throws SearchNotFoundException {
+  public void inputDelete(){
      System.out.print("삭제 할 전자제품 모델번호는? ");
       int modelNo = Integer.parseInt(sc.nextLine());
 		controller.deleteModelNo(modelNo);
