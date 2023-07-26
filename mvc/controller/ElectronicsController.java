@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import mvc.dto.Electronics;
+import mvc.exception.SearchNotFoundException;
 import mvc.service.ElectronicsService;
 import mvc.service.ElectronicsServiceImpl;
 
@@ -37,6 +38,8 @@ public class ElectronicsController {
      */
    
     public void insert(Electronics electronics) {
+
+        //service.insert(electronics);
        
     }
     
@@ -46,7 +49,11 @@ public class ElectronicsController {
      * 모델번호에 해당하는 전자제품 검색
      * @param modelNo
      */
-    public void searchByModelNo(int modelNo) {
+    public void searchByModelNo(int modelNo) throws SearchNotFoundException {
+
+        Electronics electronics = service.searchByModelNo(modelNo);
+
+        System.out.println(electronics.toString());
     	
     } 
 

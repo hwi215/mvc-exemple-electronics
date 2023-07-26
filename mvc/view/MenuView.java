@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import mvc.controller.ElectronicsController;
 import mvc.dto.Electronics;
+import mvc.exception.SearchNotFoundException;
 
 /**
    사용자의 요청을 키보드로 입력받는 클래스 
@@ -15,7 +16,7 @@ public class MenuView{
 	/**
 	  전체 메뉴를 출력하는 메소드
 	*/
-	public void printMenu(){
+	public void printMenu() throws SearchNotFoundException {
         
 	     while(true){
            System.out.println("----------------------------------------------------------------------------------");
@@ -75,7 +76,7 @@ public class MenuView{
 	/**
 	  모델번호에 해당하는 전자제품 검색하기 위해서 모델번호 키보드입력 처리하는 메소드
 	*/
-    public void inputSearch(){
+    public void inputSearch() throws SearchNotFoundException {
        System.out.print("찾을 전자제품 모델번호는? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 		controller.searchByModelNo(modelNo);

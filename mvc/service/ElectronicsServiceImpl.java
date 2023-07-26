@@ -58,8 +58,10 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 		if(list.size() > MAX_SIZE){
 			new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할수 없습니다.");
 		}
+
 		// 10개 이내면 등록
 		new ElectronicsServiceImpl();
+		System.out.println("insert 성공");
 
 	}
 
@@ -74,7 +76,13 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public Electronics searchByModelNo(int modelNo) throws SearchNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getModelNo() == modelNo){
+				return list.get(i);
+			}
+		}
+		throw new SearchNotFoundException(modelNo+ "는 없는 모델번호로 검색할수 없습니다.");
+
 	}
 
 	@Override
