@@ -1,7 +1,10 @@
 package mvc.controller;
 
 import mvc.dto.Electronics;
+import mvc.service.ElectronicsService;
+import mvc.service.ElectronicsServiceImpl;
 
+import java.util.List;
 
 
 /**
@@ -11,13 +14,21 @@ import mvc.dto.Electronics;
  */
 
 public class ElectronicsController {
+    private ElectronicsService service = ElectronicsServiceImpl.getInstance();
     
 
     /**
      * 전체검색
+     * @return
      */
-    public void selectAll() {
-		
+    public List<Electronics> selectAll() {
+        List<Electronics> electronicsList = service.selectAll();
+
+        for(int i = 0; i < electronicsList.size(); i++){
+            System.out.println(electronicsList.get(i));
+        }
+
+        return electronicsList;
     }
  
 

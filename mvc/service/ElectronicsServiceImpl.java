@@ -23,30 +23,52 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	}; // 최초의 초기치 데이터를 준비!! electronics에 저장 
 	
 	
-	private static ElectronicsService instance = new ElectronicsServiceImpl(); 
-    private static final int MAX_SIZE=10;
+	private static ElectronicsService instance = new ElectronicsServiceImpl();
+    private static final int MAX_SIZE=10; // 최대 10개로 제한
     List<Electronics> list = new ArrayList<Electronics>();
     
     /** 
      * 외부에서 객체 생성안됨. 
      * 생성자안에서 위에 2차원 배열의 데이터를 List에 추가하여
-     * 초기치 데이터를 만든다.
+     * 초기치 데이터를 만든다. -> 싱글톤패턴 !!
      * 
      */
     private ElectronicsServiceImpl() {
-        
+		for(int i = 0; i < data.length; i++){
+			int modelNo= Integer.parseInt(data[i][0]);
+			String modelName = data[i][1];
+			int modePrice = Integer.parseInt(data[i][2]);
+			String modelDetail = data[i][3];
+			System.out.println(modelDetail);
+
+			list.add(new Electronics(modelNo,modelName, modePrice, modelDetail));
+			System.out.println(list.toString());
+
+		}
       
     }
 
-	@Override
-	public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
-		
+	public static ElectronicsService getInstance() {
+		return instance;
 	}
 
 	@Override
+	public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
+
+		if(list.size() > MAX_SIZE){
+			new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할수 없습니다.");
+		}
+		// 10개 이내면 등록
+		new ElectronicsServiceImpl();
+
+	}
+
+	/**
+	 * 등록된 전체 전자제품 검색
+	 */
+	@Override
 	public List<Electronics> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return list;
 	}
 
 	@Override
