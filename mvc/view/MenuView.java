@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import mvc.controller.ElectronicsController;
 import mvc.dto.Electronics;
+import mvc.exception.ElectronicsArrayBoundsException;
 import mvc.exception.SearchNotFoundException;
 
 /**
@@ -16,7 +17,7 @@ public class MenuView{
 	/**
 	  전체 메뉴를 출력하는 메소드
 	*/
-	public void printMenu() throws SearchNotFoundException {
+	public void printMenu() throws SearchNotFoundException, ElectronicsArrayBoundsException {
         
 	     while(true){
            System.out.println("----------------------------------------------------------------------------------");
@@ -55,7 +56,7 @@ public class MenuView{
 	/**
 	   등록할때 키보드 입력을 처리하는 메소드
 	*/
-	public void inputInsert(){
+	public void inputInsert() throws ElectronicsArrayBoundsException {
         System.out.print("모델번호는? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 

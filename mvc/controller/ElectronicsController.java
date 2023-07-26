@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import mvc.dto.Electronics;
+import mvc.exception.ElectronicsArrayBoundsException;
 import mvc.exception.SearchNotFoundException;
 import mvc.service.ElectronicsService;
 import mvc.service.ElectronicsServiceImpl;
@@ -37,9 +38,9 @@ public class ElectronicsController {
      * 전자제품 등록 
      */
    
-    public void insert(Electronics electronics) {
+    public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
 
-        //service.insert(electronics);
+        service.insert(electronics);
        
     }
     
