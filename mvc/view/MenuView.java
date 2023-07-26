@@ -89,7 +89,7 @@ public class MenuView{
 	/**
 	  모델번호에 해당하는 설명을 수정하기 위해 키보드 입력처리하는 메소드
 	*/
-	public void inputUpdate(){
+	public void inputUpdate() throws SearchNotFoundException {
         System.out.print("수정하려는 전자제품 모델번호는?? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 

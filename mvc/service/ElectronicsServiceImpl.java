@@ -91,6 +91,12 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public void update(Electronics electronics) throws SearchNotFoundException {
 		// TODO Auto-generated method stub
+		int modelNo = electronics.getModelNo();
+		Electronics targetModelNoElectronics = searchByModelNo(modelNo); // 모델번호에 해당하는 전자제품 찾기
+
+		// 찾았으면, 수정하기
+		targetModelNoElectronics.setModelDetail(electronics.getModelDetail()); // 설명 수정
+		System.out.println("설명 수정 완료");
 		
 	}
 

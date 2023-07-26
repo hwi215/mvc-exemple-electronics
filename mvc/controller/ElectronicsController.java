@@ -62,7 +62,9 @@ public class ElectronicsController {
      * 모델번호에 해당하는 전자제품 수정하기 
      * @param electronics
      */
-    public void update(Electronics electronics) {
+    public void update(Electronics electronics) throws SearchNotFoundException {
+        service.update(electronics);
+        System.out.println(electronics.toString());
     	
     }
     
