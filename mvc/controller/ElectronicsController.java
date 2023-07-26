@@ -8,6 +8,9 @@ import mvc.service.ElectronicsServiceImpl;
 
 import java.util.List;
 
+import static mvc.view.SuccessView.printAll;
+import static mvc.view.SuccessView.printSearchByModelNo;
+
 
 /**
  * View와 Model 사이에서 중간 역할 
@@ -26,9 +29,7 @@ public class ElectronicsController {
     public List<Electronics> selectAll() {
         List<Electronics> electronicsList = service.selectAll();
 
-        for(int i = 0; i < electronicsList.size(); i++){
-            System.out.println(electronicsList.get(i));
-        }
+        printAll(electronicsList);
 
         return electronicsList;
     }
@@ -37,15 +38,16 @@ public class ElectronicsController {
 	 /**
      * 전자제품 등록 
      */
-   
     public void insert(Electronics electronics){
 
         try{
             service.insert(electronics);
         }catch (ElectronicsArrayBoundsException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
+        } catch (SearchNotFoundException e) {
+            System.out.println(e.getMessage());
         }
-       
+
     }
     
     
@@ -57,10 +59,11 @@ public class ElectronicsController {
     public void searchByModelNo(int modelNo){
 
         try{
-            Electronics electronics = service.searchByModelNo(modelNo);
-            System.out.println(electronics.toString());
+            Electronics electronics = service.searchByModelNo(modelNo); // 모델 검
+            //System.out.println(electronics.toString());
+            printSearchByModelNo(electronics);
         }catch (SearchNotFoundException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 
     } 
@@ -74,7 +77,7 @@ public class ElectronicsController {
             service.update(electronics);
             System.out.println(electronics.toString());
         }catch (SearchNotFoundException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 
     	
@@ -88,7 +91,7 @@ public class ElectronicsController {
         try{
             service.delete(modelNo);
         }catch (SearchNotFoundException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
 		
 	}

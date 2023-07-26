@@ -19,7 +19,7 @@ public interface ElectronicsService {
      *      - 예외메시지 : 배열의 길이를 벗어나 더이상 등록 할수 없습니다.
      * 
      */
-    public void insert(Electronics electronics) throws ElectronicsArrayBoundsException;
+    public void insert(Electronics electronics) throws ElectronicsArrayBoundsException, SearchNotFoundException;
 
     /**
      * 등록된 전체 전자제품 검색 

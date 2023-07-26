@@ -8,6 +8,8 @@ import mvc.dto.Electronics;
 import mvc.exception.ElectronicsArrayBoundsException;
 import mvc.exception.SearchNotFoundException;
 
+import static mvc.view.SuccessView.printMessage;
+
 /**
  * 전자제품에 관련된 기능을 담당할 클래스
  */
@@ -53,18 +55,22 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	}
 
 	@Override
-	public void insert(Electronics electronics) throws ElectronicsArrayBoundsException {
+	public void insert(Electronics electronics) throws ElectronicsArrayBoundsException, SearchNotFoundException {
 
-		if(list.size() == MAX_SIZE-1){ // 하나 더 추가하면 배열 초과
+		if(list.size() >= MAX_SIZE-1){ // 하나 더 추가하면 배열 초과
 			throw new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할수 없습니다.");
 		}
 
 		// 10개 이내면 등록
 
+		// 동일한 제품이 없으면 등록 -?
+
 		list.add(electronics);
 		System.out.println(list.toString());
 
-		System.out.println("insert 성공");
+		//System.out.println("insert 성공");
+		printMessage("insert 성공");
+
 
 	}
 
@@ -96,7 +102,8 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 
 		// 찾았으면, 수정하기
 		targetModelNoElectronics.setModelDetail(electronics.getModelDetail()); // 설명 수정
-		System.out.println("설명 수정 완료");
+		//System.out.println("설명 수정 완료");
+		printMessage("설명 수정 완료");
 		
 	}
 
@@ -109,7 +116,8 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 		for(int i = 0; i < list.size(); i++){
 			if(list.get(i).getModelNo() == modelNo){
 				list.remove(i); // 삭제
-				System.out.println("삭제 완료");
+				//System.out.println("삭제 완료");
+				printMessage("삭제 완료");
 				break;
 			}
 		}
