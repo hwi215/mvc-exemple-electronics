@@ -57,19 +57,22 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public void insert(Electronics electronics) throws ElectronicsArrayBoundsException, SearchNotFoundException {
 
-		if(list.size() >= MAX_SIZE-1){ // 하나 더 추가하면 배열 초과
+		if(list.size() == MAX_SIZE){ // 하나 더 추가하면 배열 초과
 			throw new ElectronicsArrayBoundsException("배열의 길이를 벗어나 더이상 등록 할수 없습니다.");
 		}
 
 		// 10개 이내면 등록
 
-		// 동일한 제품이 없으면 등록 -?
+		// 동일한 제품이 없으면 등록
+		try {
+			this.searchByModelNo(electronics.getModelNo());
+			throw new ElectronicsArrayBoundsException("모델번호 오류로 등록할 수 없어요.");
+		}catch (SearchNotFoundException e){
+			list.add(electronics);
+			printMessage("insert 성공");
 
-		list.add(electronics);
-		System.out.println(list.toString());
+		}
 
-		//System.out.println("insert 성공");
-		printMessage("insert 성공");
 
 
 	}

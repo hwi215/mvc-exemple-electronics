@@ -8,13 +8,14 @@ import mvc.service.ElectronicsServiceImpl;
 
 import java.util.List;
 
+import static mvc.view.FailView.errorMessage;
 import static mvc.view.SuccessView.printAll;
 import static mvc.view.SuccessView.printSearchByModelNo;
 
 
 /**
  * View와 Model 사이에서 중간 역할 
- *  : 사용자의 요청을 받아서 그에 해당하는 서비스를 호출하고
+ *  : 사용자의 요청을 받아서 그에 해당하는 "서비스를 호출"하고
  *    호출한 결과를 받아서 결과값에 따라 결과 뷰를 호출해준다.
  */
 
@@ -36,7 +37,7 @@ public class ElectronicsController {
  
 
 	 /**
-     * 전자제품 등록 
+     * 전자제품 등록 (길이를 벗어났는지, 중복여부 체크)
      */
     public void insert(Electronics electronics){
 
@@ -59,11 +60,10 @@ public class ElectronicsController {
     public void searchByModelNo(int modelNo){
 
         try{
-            Electronics electronics = service.searchByModelNo(modelNo); // 모델 검
-            //System.out.println(electronics.toString());
+            Electronics electronics = service.searchByModelNo(modelNo); // 모델 검색
             printSearchByModelNo(electronics);
         }catch (SearchNotFoundException e){
-            System.out.println(e.getMessage());
+            errorMessage(e.getMessage());
         }
 
     } 
